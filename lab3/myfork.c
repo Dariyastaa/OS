@@ -5,7 +5,7 @@
 #include <string.h>
 #include <sys/wait.h>
 
-static void on_exit(void){ printf("atexit: PID=%d завершает работу\n", getpid()); }
+static void f_on_exit(void){ printf("atexit: PID=%d завершает работу\n", getpid()); }
 
 static void h_sigint(int s){ printf("SIGINT у PID=%d: %s\n", getpid(), strsignal(s)); }
 
@@ -16,7 +16,7 @@ static void h_sigterm(int sig, siginfo_t *info, void *u){
 
 int main(void){
     setbuf(stdout, NULL);
-    if (atexit(on_exit) != 0){ perror("atexit"); return 1; }
+    if (atexit(f_on_exit) != 0){ perror("atexit"); return 1; }
 
     if (signal(SIGINT, h_sigint) == SIG_ERR){ perror("signal"); return 1; }
 
