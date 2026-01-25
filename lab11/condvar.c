@@ -99,7 +99,5 @@ int main(void) {
     pthread_join(writer, NULL);
     for (int i = 0; i < READERS; i++) pthread_join(readers[i], NULL);
 
-    pthread_mutex_destroy(&mtx);
-    pthread_cond_destroy(&cv);
     return 0;
 }
