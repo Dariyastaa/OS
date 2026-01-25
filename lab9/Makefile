@@ -1,5 +1,6 @@
 CC      := gcc
 PROGS   := sem sender receiver
+LDFLAGS := -pthread
 
 .PHONY: all clean rebuild
 
@@ -9,7 +10,7 @@ all: $(PROGS)
 	$(CC) -c $< -o $@
 
 sem: sem.o
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 sender: sender.o
 	$(CC) $^ -o $@
